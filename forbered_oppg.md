@@ -15,3 +15,6 @@ for oss)?
 # b) MCP3201 sin oppløsning er 12-bit = 2^12. Med V_ss som jord og V_dd = 3.3 V blir oppløsningen 3.3 V / 2^12 = 0.81 mV.
 
 # c) Fra databladet til MCP3201 har vi at max verdi for V_dd = 7.0 V. Alle innganger og utganger tåler -0.6 V til V_dd + 0.6 V med V_ss som referansepunkt.
+
+
+## 3. OS bruker en scheduler for å velge jobber fra listen av jobber å utføre. Dette gjør at OS ikke har tid til å ta imot og prosessere en kontinuerlig strøm av I/O fra enheter. Derfor kan vi bruke en DMA controller som en mellommann for å ta seg av I/O strømmen.
