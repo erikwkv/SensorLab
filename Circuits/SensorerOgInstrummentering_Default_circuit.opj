@@ -85,9 +85,13 @@
          "ADC")
       (Path "Design Resources"
          "C:\Users\benja\Documents\Sensorer og instrumentering\SensorLab\Circuits\sensoreroginstrummentering_default_circuit.dsn"
+         "Pi")
+      (Path "Design Resources"
+         "C:\Users\benja\Documents\Sensorer og instrumentering\SensorLab\Circuits\sensoreroginstrummentering_default_circuit.dsn"
          "Pi_Wedge")
       (Select "Design Resources"
-         "C:\Users\benja\Documents\Sensorer og instrumentering\SensorLab\Circuits\sensoreroginstrummentering_default_circuit.dsn"))
+         "C:\Users\benja\Documents\Sensorer og instrumentering\SensorLab\Circuits\sensoreroginstrummentering_default_circuit.dsn"
+         "MAIN" "PAGE1"))
     (HierarchyView)
     (Doc
       (Type "COrCapturePMDoc")
@@ -98,8 +102,8 @@
       (Type "COrSchematicDoc")
       (Frame
         (Placement "44 0 1 -1 -1 5 24 5 1180 24 714")
-        (Scroll "208 274")
-        (Zoom "156")
+        (Scroll "-115 -7")
+        (Zoom "78")
         (Occurrence "/"))
       (Path
          "C:\USERS\BENJA\DOCUMENTS\SENSORER OG INSTRUMENTERING\SENSORLAB\CIRCUITS\SENSOREROGINSTRUMMENTERING_DEFAULT_CIRCUIT.DSN")
@@ -148,12 +152,27 @@
         (Zoom "100"))
       (Frame
         (Placement "44 0 1 -1 -1 -1 -1 5 1180 24 714")
-        (Scroll "312 86")
+        (Scroll "540 20")
         (Zoom "200")
         (Occurrence "/Pi_wedge"))
       (Path
          "C:\USERS\BENJA\DOCUMENTS\SENSORER OG INSTRUMENTERING\SENSORLAB\CIRCUITS\SENSOREROGINSTRUMMENTERING_DEFAULT_CIRCUIT.DSN")
       (Schematic "Pi_Wedge")
+      (Page "PAGE1"))
+    (Doc
+      (Type "COrSchematicDoc")
+      (Frame
+        (Placement "44 0 1 -1 -1 -1 -1 5 1180 24 714")
+        (Scroll "-86 0")
+        (Zoom "100"))
+      (Frame
+        (Placement "44 0 1 -1 -1 -1 -1 5 1180 24 714")
+        (Scroll "164 224")
+        (Zoom "200")
+        (Occurrence "/RPI3"))
+      (Path
+         "C:\USERS\BENJA\DOCUMENTS\SENSORER OG INSTRUMENTERING\SENSORLAB\CIRCUITS\SENSOREROGINSTRUMMENTERING_DEFAULT_CIRCUIT.DSN")
+      (Schematic "Pi")
       (Page "PAGE1")))
   (MPSSessionName "benja")
   (LastUsedLibraryBrowseDirectory
