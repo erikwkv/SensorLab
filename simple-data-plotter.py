@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 from raspi_import import raspi_import
 import numpy as np
 
-sample_period, data = raspi_import('out-2024-00-30-16.54.22.bin')
+sample_period, data = raspi_import('data-sampling\out-2024-00-30-16.54.22.bin')
 
 # Plotting the data
 time_axis = 1e3*sample_period*np.arange(len(data))
