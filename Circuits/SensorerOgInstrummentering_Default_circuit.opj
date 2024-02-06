@@ -1,0 +1,179 @@
+(ExpressProject "SensorerOgInstrummentering_Default_circuit"
+  (ProjectVersion "19981106")
+  (SoftwareVersion "23.1 S001 (4155653)  [11/15/2023]-[01/30/24]")
+  (ProjectType "Analog or A/D Mixed Mode")
+  (Folder "Design Resources"
+    (Folder "Library")
+    ("Allegro Netlist Directory" "allegro")
+    (DOCKED "TRUE")
+    (DOCKING_POSITION "59420")
+    (NoModify)
+    (File ".\sensoreroginstrummentering_default_circuit.dsn"
+      (Type "Schematic Design"))
+    (BuildFileAddedOrDeleted "x")
+    (CompileFileAddedOrDeleted "x")
+    (Board_sim_option "VHDL_flow"))
+  (Folder "Layout")
+  (Folder "Outputs")
+  (Folder "PSpice Resources"
+    (Folder "Simulation Profiles")
+    (Folder "Model Libraries"
+      (Sort User))
+    (Folder "Stimulus Files"
+      (Sort User))
+    (Folder "Include Files"
+      (Sort User)))
+  (DefaultLibraryBrowseDirectory "library\PSpice")
+  (Folder "Logs")
+  (PartMRUSelector
+    (VCC_CIRCLE
+      (LibraryName "C:\CADENCE\ORCADX_23.1\TOOLS\CAPTURE\LIBRARY\CAPSYM.OLB")
+      (DeviceIndex "0"))
+    (RN_0603-LOW-LAB-KIT
+      (FullPartName "RN_0603-LOW-LAB-KIT.Normal")
+      (LibraryName
+         "C:\USERS\BENJA\APPDATA\ROAMING\SPB_DATA\CDSSETUP\ORCAD_CAPTURE\23.1.0\TEMP\DOWNLOADED_PARTS\SAMACSYS_PART_1706633032\RN_0603-LOW-LAB-KIT\CAPTURE\RN_0603-LOW-LAB-KIT.OLB")
+      (DeviceIndex "0"))
+    (VCC_BAR
+      (LibraryName "C:\CADENCE\ORCADX_23.1\TOOLS\CAPTURE\LIBRARY\CAPSYM.OLB")
+      (DeviceIndex "0"))
+    (GND
+      (LibraryName "C:\CADENCE\ORCADX_23.1\TOOLS\CAPTURE\LIBRARY\CAPSYM.OLB")
+      (DeviceIndex "0"))
+    (ASLL_865060145006_220uF
+      (FullPartName "ASLL_865060145006_220uF.Normal")
+      (LibraryName
+         "C:\CADENCE\COMPONENT_LIBRARY\SYMBOLS\CADENCE_WCAP-ASLL (REV22B)\WCAP-ASLL_REV22B\WCAP-ASLL.OLB")
+      (DeviceIndex "0"))
+    (PORTRIGHT-R
+      (LibraryName "C:\CADENCE\ORCADX_23.1\TOOLS\CAPTURE\LIBRARY\CAPSYM.OLB")
+      (DeviceIndex "0"))
+    (PORTLEFT-L
+      (LibraryName "C:\CADENCE\ORCADX_23.1\TOOLS\CAPTURE\LIBRARY\CAPSYM.OLB")
+      (DeviceIndex "0"))
+    (2EDN8524FXTMA1
+      (FullPartName "2EDN8524FXTMA1.Normal")
+      (LibraryName
+         "C:\USERS\BENJA\APPDATA\ROAMING\SPB_DATA\CDSSETUP\ORCAD_CAPTURE\23.1.0\TEMP\DOWNLOADED_PARTS\UL_PART_1706630300\ORCADCAPTUREXML\2EDN8524FXTMA1TR-ND.OLB")
+      (DeviceIndex "0"))
+    (PORTRIGHT-L
+      (LibraryName "C:\CADENCE\ORCADX_23.1\TOOLS\CAPTURE\LIBRARY\CAPSYM.OLB")
+      (DeviceIndex "0"))
+    (GRM0335C1E100JA01D
+      (FullPartName "GRM0335C1E100JA01D.Normal")
+      (LibraryName
+         "C:\USERS\BENJA\APPDATA\ROAMING\SPB_DATA\CDSSETUP\ORCAD_CAPTURE\23.1.0\TEMP\DOWNLOADED_PARTS\UL_PART_1706629240\ORCADCAPTUREXML\490-8607-2-ND.OLB")
+      (DeviceIndex "0"))
+    (0402CS-10N
+      (FullPartName "0402CS-10N.Normal")
+      (LibraryName
+         "C:\CADENCE\ORCADX_23.1\TOOLS\CAPTURE\LIBRARY\PSPICE\COILCRAFT.OLB")
+      (DeviceIndex "0")))
+  (GlobalState
+    (FileView
+      (Path "Design Resources")
+      (Path "Design Resources"
+         "C:\Users\benja\Documents\Sensorer og instrumentering\SensorLab\Circuits\sensoreroginstrummentering_default_circuit.dsn")
+      (Path "Design Resources"
+         "C:\Users\benja\Documents\Sensorer og instrumentering\SensorLab\Circuits\sensoreroginstrummentering_default_circuit.dsn"
+         "MAIN")
+      (Path "Design Resources"
+         "C:\Users\benja\Documents\Sensorer og instrumentering\SensorLab\Circuits\sensoreroginstrummentering_default_circuit.dsn"
+         "3V3_LP_Filter")
+      (Path "Design Resources"
+         "C:\Users\benja\Documents\Sensorer og instrumentering\SensorLab\Circuits\sensoreroginstrummentering_default_circuit.dsn"
+         "ADC")
+      (Path "Design Resources"
+         "C:\Users\benja\Documents\Sensorer og instrumentering\SensorLab\Circuits\sensoreroginstrummentering_default_circuit.dsn"
+         "Pi")
+      (Path "Design Resources"
+         "C:\Users\benja\Documents\Sensorer og instrumentering\SensorLab\Circuits\sensoreroginstrummentering_default_circuit.dsn"
+         "Pi_Wedge")
+      (Select "Design Resources"
+         "C:\Users\benja\Documents\Sensorer og instrumentering\SensorLab\Circuits\sensoreroginstrummentering_default_circuit.dsn"
+         "MAIN" "PAGE1"))
+    (HierarchyView)
+    (Doc
+      (Type "COrCapturePMDoc")
+      (Frame
+        (Placement "44 0 1 -1 -1 -1 -1 0 200 0 696"))
+      (Tab 0))
+    (Doc
+      (Type "COrSchematicDoc")
+      (Frame
+        (Placement "44 0 1 -1 -1 5 24 5 1180 24 714")
+        (Scroll "-115 -7")
+        (Zoom "78")
+        (Occurrence "/"))
+      (Path
+         "C:\USERS\BENJA\DOCUMENTS\SENSORER OG INSTRUMENTERING\SENSORLAB\CIRCUITS\SENSOREROGINSTRUMMENTERING_DEFAULT_CIRCUIT.DSN")
+      (Schematic "MAIN")
+      (Page "PAGE1"))
+    (Doc
+      (Type "COrSchematicDoc")
+      (Frame
+        (Placement "44 0 1 -1 -1 -1 -1 5 1180 24 714")
+        (Scroll "39 101")
+        (Zoom "156"))
+      (Frame
+        (Placement "44 0 1 -1 -1 -1 -1 5 1180 24 714")
+        (Scroll "224 244")
+        (Zoom "200")
+        (Occurrence "/LP_filter"))
+      (Path
+         "C:\USERS\BENJA\DOCUMENTS\SENSORER OG INSTRUMENTERING\SENSORLAB\CIRCUITS\SENSOREROGINSTRUMMENTERING_DEFAULT_CIRCUIT.DSN")
+      (Schematic "3V3_LP_Filter")
+      (Page "PAGE1"))
+    (Doc
+      (Type "COrSchematicDoc")
+      (Frame
+        (Placement "44 0 1 -1 -1 -1 -1 5 1180 24 714")
+        (Scroll "0 220")
+        (Zoom "200"))
+      (Frame
+        (Placement "44 0 1 -1 -1 5 24 5 1180 24 714")
+        (Scroll "347 270")
+        (Zoom "180")
+        (Occurrence "/ADC1"))
+      (Frame
+        (Placement "44 0 1 -1 -1 -1 -1 5 1180 24 714")
+        (Scroll "584 332")
+        (Zoom "200")
+        (Occurrence "/ADC2"))
+      (Path
+         "C:\USERS\BENJA\DOCUMENTS\SENSORER OG INSTRUMENTERING\SENSORLAB\CIRCUITS\SENSOREROGINSTRUMMENTERING_DEFAULT_CIRCUIT.DSN")
+      (Schematic "ADC")
+      (Page "PAGE1"))
+    (Doc
+      (Type "COrSchematicDoc")
+      (Frame
+        (Placement "44 0 1 -1 -1 -1 -1 5 1180 24 714")
+        (Scroll "-86 0")
+        (Zoom "100"))
+      (Frame
+        (Placement "44 0 1 -1 -1 -1 -1 5 1180 24 714")
+        (Scroll "540 20")
+        (Zoom "200")
+        (Occurrence "/Pi_wedge"))
+      (Path
+         "C:\USERS\BENJA\DOCUMENTS\SENSORER OG INSTRUMENTERING\SENSORLAB\CIRCUITS\SENSOREROGINSTRUMMENTERING_DEFAULT_CIRCUIT.DSN")
+      (Schematic "Pi_Wedge")
+      (Page "PAGE1"))
+    (Doc
+      (Type "COrSchematicDoc")
+      (Frame
+        (Placement "44 0 1 -1 -1 -1 -1 5 1180 24 714")
+        (Scroll "-86 0")
+        (Zoom "100"))
+      (Frame
+        (Placement "44 0 1 -1 -1 -1 -1 5 1180 24 714")
+        (Scroll "164 224")
+        (Zoom "200")
+        (Occurrence "/RPI3"))
+      (Path
+         "C:\USERS\BENJA\DOCUMENTS\SENSORER OG INSTRUMENTERING\SENSORLAB\CIRCUITS\SENSOREROGINSTRUMMENTERING_DEFAULT_CIRCUIT.DSN")
+      (Schematic "Pi")
+      (Page "PAGE1")))
+  (MPSSessionName "benja")
+  (LastUsedLibraryBrowseDirectory
+     "C:\Cadence\Component_library\symbols\Cadence_WCAP-ASLL (rev22b)\WCAP-ASLL_rev22b"))

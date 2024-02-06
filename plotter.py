@@ -3,16 +3,20 @@ import matplotlib.pyplot as plt
 import csv
 from matplotlib.patches import Ellipse, Rectangle
 import numpy as np
-def readCSV (path):
+from itertools import islice
+def readCSV(path):
   data = []
-  header = [] # removes first line of file
+  header = []  # removes first line of file
   filename = path
   with open(filename) as csvfile:
     csvreader = csv.reader(csvfile)
-    header = next(csvreader)  # removes first line of file
+    # Skip the first 20 lines
+    csvreader = islice(csvreader, 20, None)
+    # set header to first remaining line
+    header = next(csvreader)
     for datapoint in csvreader:
-        values = [float(value) for value in datapoint]
-        data.append(values)
+      values = [float(value) for value in datapoint]
+      data.append(values)
   return data
 
 def magnitudeBode(dataList, dataLabel,col, col2=-1):
@@ -190,7 +194,7 @@ def phase(dataList, dataLabel,col):
   plt.show()
 
 def bodeDiagram(fileList,dataLabel):
-  if len(fileList)!=len(dataLabel):
+  if len(fileList)>len(dataLabel):
     print("\n\nMissing labels for grafs\n\n")
   dataList= []
   for i in range (0,len(fileList)):
@@ -348,9 +352,9 @@ plt.rcParams.update({'font.size': 16})
 
 
 
-#bodefiles = ["bode/3V3filter_bode_v1.csv","bode/3V3filter_bode_v2_11ohm_series.csv","bode/3V3filter_bode_v2_17ohm_series.csv","bode\3V3filter_bode_v2_33ohm_series.csv","bode/3V3filter_bode_v2_100ohm_series.csv","bode/3V3filter_bode_v2.csv"]
-bodefiles = ["bode/3V3filter_bode_v1.csv","bode/3V3filter_bode_v2_11ohm_series.csv","bode/3V3filter_bode_v2_17ohm_series.csv","bode/3V3filter_bode_v2_100ohm_series.csv","bode/3V3filter_bode_v2.csv"]
-
+#bodefiles = ["bode/3V3filter_bode_v1.csv", "bode/3V3filter_bode_v2_11ohm_series.csv","bode/3V3filter_bode_v2_17ohm_series.csv","bode\3V3filter_bode_v2_33ohm_series.csv","bode/3V3filter_bode_v2_100ohm_series.csv","bode/3V3filter_bode_v2.csv"]
+#bodefiles = ["bode/3V3filter_bode_v1.csv","bode/3V3filter_bode_v2_11ohm_series.csv","bode/3V3filter_bode_v2_17ohm_series.csv","bode/3V3filter_bode_v2_100ohm_series.csv","bode/3V3filter_bode_v2.csv"]
+bodefiles = ["bode/bode-with-metadata/3V3filter_bode_v4_11ohm_series copy.csv","bode/bode-with-metadata/3V3filter_bode_v2_17ohm_series copy.csv","bode/bode-with-metadata/3V3filter_bode_v2_33ohm_series copy.csv","bode/bode-with-metadata/3V3filter_bode_v2_100ohm_series copy.csv","bode/bode-with-metadata/3V3filter_bode_v2 copy.csv"]
 dataLabel = ["3V3filter_v1","3V3filter_v2_11ohm_series","3V3filter_v2_17ohm_series","3V3filter_v2_33ohm_series","3V3filter_v2_100ohm_series","3V3filter_v2"]
 #dataLabel = [1,2,3,4,5,6,7,8,9,0]
 
