@@ -2,7 +2,7 @@
 ## (a) Hvor mange klokkesykluser er det minste vi må bruke for å ta én punktprøve og overføre
 dataene fra den tilbake til RPi?
 
-Lest av fra databladet: 12 cycles for å convertere fra analog til digital + 1.5 cycles for "analog input sample time". Til sammen og rundet opp blir dette 14 cycles.
+Lest av fra databladet: 12 cycles for å convertere fra analog til digital + 1.5 cycles for "analog input sample time". + 2 på chip select og 0 bit. Til sammen og rundet opp blir dette 16 cycles.
 
 ## (b) Gitt en driftspenning på 3.3 V (V_dd), hva blir AD-konverterens oppløsning? Oppgi svaret i mV.
 
