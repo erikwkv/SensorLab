@@ -6,7 +6,7 @@ sample_period, data = raspi_import('data-sampling\out-2024-00-30-16.54.22.bin')
 
 # Plotting the data
 time_axis = 1e3*sample_period*np.arange(len(data))
-plt.plot(time_axis,data[:,0]*0.00081)
+plt.plot(time_axis,data[:]*0.00081)
 plt.xlabel('Time [ms]')
 plt.ylabel('Spenning [V]')
 plt.title('Time domain plot of the recorded data')
