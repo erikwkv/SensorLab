@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 from raspi_import import raspi_import
 import numpy as np
 
-sample_period, data = raspi_import('Lab2\H015')
+sample_period, data = raspi_import('Lab2/angle-measurements/90out-2024-01-08-09.57.28.bin')
 
 # Plotting the data
 time_axis = 1e3*sample_period*np.arange(len(data))
@@ -19,10 +19,12 @@ mic_2_ac = (data[1:,1] - np.mean(data[:,1]))*0.00081
 mic_3_ac = (data[1:,2] - np.mean(data[:,2]))*0.00081
 
 time_axis = 1e3*sample_period*np.arange(len(data)-1)
-plt.plot(time_axis,mic_1_ac)
-plt.plot(time_axis,mic_2_ac)
-plt.plot(time_axis,mic_3_ac)
+plt.plot(time_axis,mic_1_ac,label='Mic 1')
+plt.plot(time_axis,mic_2_ac,label='Mic 2')
+plt.plot(time_axis,mic_3_ac,label='Mic 3')
+plt.legend()
 plt.show()
+
 # fig, ax = plt.subplots(3,figsize=(8,7))
 # ax[0].plot(time_axis,mic_1_ac)
 # ax[1].plot(time_axis,mic_2_ac)
