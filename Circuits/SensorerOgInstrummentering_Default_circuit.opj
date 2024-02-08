@@ -1,6 +1,6 @@
 (ExpressProject "SensorerOgInstrummentering_Default_circuit"
   (ProjectVersion "19981106")
-  (SoftwareVersion "23.1 S001 (4155653)  [11/15/2023]-[01/30/24]")
+  (SoftwareVersion "23.1 S001 (4155653)  [11/15/2023]-[02/06/24]")
   (ProjectType "Analog or A/D Mixed Mode")
   (Folder "Design Resources"
     (Folder "Library")
@@ -12,7 +12,23 @@
       (Type "Schematic Design"))
     (BuildFileAddedOrDeleted "x")
     (CompileFileAddedOrDeleted "x")
-    (Board_sim_option "VHDL_flow"))
+    (Board_sim_option "VHDL_flow")
+    (ANNOTATE_Scope "0")
+    (ANNOTATE_Mode "0")
+    (ANNOTATE_Action "0")
+    (Annotate_Page_Order "0")
+    (ANNOTATE_Reset_References_to_1 "FALSE")
+    (ANNOTATE_No_Page_Number_Change "FALSE")
+    (ANNOTATE_Property_Combine "{Value}{Source Package}{POWER_GROUP}")
+    (ANNOTATE_IncludeNonPrimitive "TRUE")
+    (ANNOTATE_PreserveDesignator "FALSE")
+    (ANNOTATE_PreserveUserEdits "FALSE")
+    (ANNOTATE_Refdes_Control_Required "FALSE")
+    (Update_Instace_for_External_Design "FALSE")
+    (Annotate_type "Default")
+    (width_pages "100")
+    (width_start "80")
+    (width_End "80"))
   (Folder "Layout")
   (Folder "Outputs")
   (Folder "PSpice Resources"
@@ -73,37 +89,36 @@
     (FileView
       (Path "Design Resources")
       (Path "Design Resources"
-         "C:\Users\benja\Documents\Sensorer og instrumentering\SensorLab\Circuits\sensoreroginstrummentering_default_circuit.dsn")
+         "c:\users\benja\documents\sensorer og instrumentering\sensorlab\circuits\sensoreroginstrummentering_default_circuit.dsn")
       (Path "Design Resources"
-         "C:\Users\benja\Documents\Sensorer og instrumentering\SensorLab\Circuits\sensoreroginstrummentering_default_circuit.dsn"
+         "c:\users\benja\documents\sensorer og instrumentering\sensorlab\circuits\sensoreroginstrummentering_default_circuit.dsn"
          "MAIN")
       (Path "Design Resources"
-         "C:\Users\benja\Documents\Sensorer og instrumentering\SensorLab\Circuits\sensoreroginstrummentering_default_circuit.dsn"
+         "c:\users\benja\documents\sensorer og instrumentering\sensorlab\circuits\sensoreroginstrummentering_default_circuit.dsn"
          "3V3_LP_Filter")
       (Path "Design Resources"
-         "C:\Users\benja\Documents\Sensorer og instrumentering\SensorLab\Circuits\sensoreroginstrummentering_default_circuit.dsn"
+         "c:\users\benja\documents\sensorer og instrumentering\sensorlab\circuits\sensoreroginstrummentering_default_circuit.dsn"
          "ADC")
       (Path "Design Resources"
-         "C:\Users\benja\Documents\Sensorer og instrumentering\SensorLab\Circuits\sensoreroginstrummentering_default_circuit.dsn"
+         "c:\users\benja\documents\sensorer og instrumentering\sensorlab\circuits\sensoreroginstrummentering_default_circuit.dsn"
          "Pi")
       (Path "Design Resources"
-         "C:\Users\benja\Documents\Sensorer og instrumentering\SensorLab\Circuits\sensoreroginstrummentering_default_circuit.dsn"
+         "c:\users\benja\documents\sensorer og instrumentering\sensorlab\circuits\sensoreroginstrummentering_default_circuit.dsn"
          "Pi_Wedge")
       (Select "Design Resources"
-         "C:\Users\benja\Documents\Sensorer og instrumentering\SensorLab\Circuits\sensoreroginstrummentering_default_circuit.dsn"
-         "MAIN" "PAGE1"))
+         "c:\users\benja\documents\sensorer og instrumentering\sensorlab\circuits\sensoreroginstrummentering_default_circuit.dsn"))
     (HierarchyView)
     (Doc
       (Type "COrCapturePMDoc")
       (Frame
-        (Placement "44 0 1 -1 -1 -1 -1 0 200 0 696"))
+        (Placement "44 0 1 -1 -1 -1 -1 0 200 0 808"))
       (Tab 0))
     (Doc
       (Type "COrSchematicDoc")
       (Frame
-        (Placement "44 0 1 -1 -1 5 24 5 1180 24 714")
-        (Scroll "-115 -7")
-        (Zoom "78")
+        (Placement "44 0 1 -1 -1 5 24 5 1180 24 826")
+        (Scroll "793 365")
+        (Zoom "184")
         (Occurrence "/"))
       (Path
          "C:\USERS\BENJA\DOCUMENTS\SENSORER OG INSTRUMENTERING\SENSORLAB\CIRCUITS\SENSOREROGINSTRUMMENTERING_DEFAULT_CIRCUIT.DSN")
@@ -112,14 +127,14 @@
     (Doc
       (Type "COrSchematicDoc")
       (Frame
-        (Placement "44 0 1 -1 -1 -1 -1 5 1180 24 714")
+        (Placement "44 0 1 -1 -1 -1 -1 5 1180 24 826")
         (Scroll "39 101")
         (Zoom "156"))
       (Frame
-        (Placement "44 0 1 -1 -1 -1 -1 5 1180 24 714")
-        (Scroll "224 244")
-        (Zoom "200")
-        (Occurrence "/LP_filter"))
+        (Placement "44 0 1 -1 -1 -1 -1 5 1180 24 826")
+        (Scroll "-34 -5")
+        (Zoom "92")
+        (Occurrence "/LP_filter1"))
       (Path
          "C:\USERS\BENJA\DOCUMENTS\SENSORER OG INSTRUMENTERING\SENSORLAB\CIRCUITS\SENSOREROGINSTRUMMENTERING_DEFAULT_CIRCUIT.DSN")
       (Schematic "3V3_LP_Filter")
@@ -127,34 +142,14 @@
     (Doc
       (Type "COrSchematicDoc")
       (Frame
-        (Placement "44 0 1 -1 -1 -1 -1 5 1180 24 714")
-        (Scroll "0 220")
-        (Zoom "200"))
+        (Placement "44 0 1 -1 -1 -1 -1 5 1180 24 826")
+        (Scroll "0 21")
+        (Zoom "113"))
       (Frame
-        (Placement "44 0 1 -1 -1 5 24 5 1180 24 714")
-        (Scroll "347 270")
-        (Zoom "180")
-        (Occurrence "/ADC1"))
-      (Frame
-        (Placement "44 0 1 -1 -1 -1 -1 5 1180 24 714")
-        (Scroll "584 332")
-        (Zoom "200")
-        (Occurrence "/ADC2"))
-      (Path
-         "C:\USERS\BENJA\DOCUMENTS\SENSORER OG INSTRUMENTERING\SENSORLAB\CIRCUITS\SENSOREROGINSTRUMMENTERING_DEFAULT_CIRCUIT.DSN")
-      (Schematic "ADC")
-      (Page "PAGE1"))
-    (Doc
-      (Type "COrSchematicDoc")
-      (Frame
-        (Placement "44 0 1 -1 -1 -1 -1 5 1180 24 714")
-        (Scroll "-86 0")
-        (Zoom "100"))
-      (Frame
-        (Placement "44 0 1 -1 -1 -1 -1 5 1180 24 714")
-        (Scroll "540 20")
-        (Zoom "200")
-        (Occurrence "/Pi_wedge"))
+        (Placement "44 0 1 -1 -1 -1 -1 5 1180 24 826")
+        (Scroll "-34 -5")
+        (Zoom "92")
+        (Occurrence "/Pi_wedge1"))
       (Path
          "C:\USERS\BENJA\DOCUMENTS\SENSORER OG INSTRUMENTERING\SENSORLAB\CIRCUITS\SENSOREROGINSTRUMMENTERING_DEFAULT_CIRCUIT.DSN")
       (Schematic "Pi_Wedge")
@@ -162,14 +157,14 @@
     (Doc
       (Type "COrSchematicDoc")
       (Frame
-        (Placement "44 0 1 -1 -1 -1 -1 5 1180 24 714")
-        (Scroll "-86 0")
-        (Zoom "100"))
+        (Placement "44 0 1 -1 -1 -1 -1 5 1180 24 826")
+        (Scroll "0 21")
+        (Zoom "113"))
       (Frame
-        (Placement "44 0 1 -1 -1 -1 -1 5 1180 24 714")
-        (Scroll "164 224")
-        (Zoom "200")
-        (Occurrence "/RPI3"))
+        (Placement "44 0 1 -1 -1 -1 -1 5 1180 24 826")
+        (Scroll "-34 -5")
+        (Zoom "92")
+        (Occurrence "/RPI1"))
       (Path
          "C:\USERS\BENJA\DOCUMENTS\SENSORER OG INSTRUMENTERING\SENSORLAB\CIRCUITS\SENSOREROGINSTRUMMENTERING_DEFAULT_CIRCUIT.DSN")
       (Schematic "Pi")
