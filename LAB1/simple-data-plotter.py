@@ -2,81 +2,91 @@ import matplotlib.pyplot as plt
 from raspi_import import raspi_import
 import numpy as np
 
-sample_period, data = raspi_import('data-sampling\out-2024-00-30-16.54.22.bin')
+sample_period, data = raspi_import('LAB1\data-sampling\out-2024-00-30-16.54.22.bin')
 
 #factor to multiply with to get voltage:
 res_factor = 0.00081
 #Separating adc channels and removing dc offset.
 
-def remove_dc_offset(data):
-    for i in range(len(data[0,:])):
-        data[1:,i] = (data[1:,i] - np.mean(data[:,i]))*res_factor
-    return data_
 
-adc_1_ac = (data[1:,0] - np.mean(data[:,0]))*res_factor
-adc_2_ac = (data[1:,1] - np.mean(data[:,1]))*res_factor
-adc_3_ac = (data[1:,2] - np.mean(data[:,2]))*res_factor
-adc_4_ac = (data[1:,3] - np.mean(data[:,3]))*res_factor
-adc_5_ac = (data[1:,4] - np.mean(data[:,4]))*res_factor
+adc_1_ac = (data[:,0] - np.mean(data[:,0]))*res_factor
+adc_2_ac = (data[:,1] - np.mean(data[:,1]))*res_factor
+adc_3_ac = (data[:,2] - np.mean(data[:,2]))*res_factor
+adc_4_ac = (data[:,3] - np.mean(data[:,3]))*res_factor
+adc_5_ac = (data[:,4] - np.mean(data[:,4]))*res_factor
 
 
-time_axis = 1e3*sample_period*np.arange(len(data)-1)
-plt.plot(time_axis,adc_1_ac, label='Mic 1')
-plt.plot(time_axis,adc_2_ac, label='Mic 2')
-plt.plot(time_axis,adc_3_ac, label='Mic 3')
-plt.plot(time_axis,adc_4_ac, label='Mic 4')
-plt.plot(time_axis,adc_5_ac, label='Mic 5')
-plt.xlabel('Time [ms]')
-plt.ylabel('Spenning [V]')
-plt.title('Time domain plot of the recorded data')
-plt.legend()
-plt.xlim(20,25)
-plt.show()
+time_axis = 1e3*sample_period*np.arange(len(adc_1_ac))
+# plt.plot(time_axis,adc_1_ac, label='ADC 1')
+# plt.plot(time_axis,adc_2_ac, label='ADC 2')
+# plt.plot(time_axis,adc_3_ac, label='ADC 3')
+# plt.plot(time_axis,adc_4_ac, label='ADC 4')
+# plt.plot(time_axis,adc_5_ac, label='ADC 5')
+# plt.xlabel('Tid [ms]')
+# plt.ylabel('Spenning [V]')
+# plt.title('Spenning som funksjon av tid for de fem ADCene')
+# plt.legend()
+# plt.xlim(20,25)
+# plt.ylim(-1.5,1.5)
+# plt.show()
 
 
 # print(data.shape)
 # print(len(data[:,0]))
 
 #fft of one channel
-Y = np.fft.fft(data[:,0],2**15)
+Y = np.fft.fft(adc_1_ac,2**15)
 freqs = np.fft.fftfreq(2**15,sample_period)
+relative_Y = 20*np.log10(abs(Y))
+Y_dB = relative_Y - np.max(relative_Y)
 
 #only positive freqs, and removing the first 20 values due to dc noise
-positive_freqs = freqs[20:len(freqs)//2]
-positive_Y = abs(Y)[20:len(Y)//2]
+# positive_freqs = freqs[:len(freqs)//2]
+# positive_Y = abs(Y)[:len(Y)//2]
+
 
 # plt.yscale('log')
-plt.plot(positive_freqs,positive_Y)
-plt.xlabel('Frequency [Hz]')
-plt.ylabel('Amplitude')
-plt.xlim(0,5000)
-plt.show()
+# plt.plot(freqs,Y_dB)
+# plt.xlabel('Frekvens [Hz]')
+# plt.ylabel('Relativ amplitude [dB]')
+# plt.title('Relativ amplituderespons for signalet fra én ADC uten vindu')
+# plt.xlim(0,5000)
+# plt.ylim(-100,5)
+# plt.show()
 
 
 #windowed function fft
 window = np.hanning(len(data[:,0]))
-windowed_data = data[:,0]*window
+windowed_data = adc_1_ac*window
 
 Y_windowed = np.fft.fft(windowed_data,2**15)
 freqs_windowed = np.fft.fftfreq(2**15,sample_period)
 
-positive_freqs_windowed = freqs_windowed[20:len(freqs_windowed)//2]
-positive_Y_windowed = abs(Y_windowed)[20:len(Y_windowed)//2]
+rel_Y_wind = 20*np.log10(abs(Y_windowed))
+Y_windowed_dB = rel_Y_wind - np.max(rel_Y_wind)
 
-plt.yscale('log') 
-plt.plot(positive_freqs_windowed, positive_Y_windowed)
-plt.show()
+# positive_freqs_windowed = freqs_windowed[:len(freqs_windowed)//2]
+# positive_Y_windowed = abs(Y_windowed)[:len(Y_windowed)//2]
+
+# plt.yscale('log')
+# plt.plot(freqs_windowed, Y_windowed_dB)
+# plt.title('Relativ amplituderespons for signalet fra én ADC med Hanning-vindu')
+# plt.xlabel('Frekvens [Hz]')
+# plt.ylabel('Relativ amplitude [dB]')
+# plt.xlim(0,5000)
+# plt.show()
 
 #Power plot
 power = abs(Y_windowed)**2
+rel_pow = 10*np.log10(power)
 
-#only positive freqs
-power = power[20:len(power)//2]
-freqs_windowed = freqs_windowed[20:len(freqs_windowed)//2]
+plt.plot(freqs_windowed,power)
+plt.title('Effektspekter for signalet fra én ADC med Hanning-vindu')
+plt.xlabel('Frekvens [Hz]')
+plt.ylabel('Effekt [V^2]')
+plt.xlim(0,5000)
+plt.show()
 
-# plt.plot(freqs_windowed,power)
-# plt.yscale('log')
-# plt.show()
 
 
 

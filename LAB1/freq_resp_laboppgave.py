@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 
 
-freqs = np.linspace(1,10000,100000)
+freqs = np.linspace(0.1,10000,100000)
 # R_1 = 0.2
 R_2 = 6.6+11
 L = 403e-3
