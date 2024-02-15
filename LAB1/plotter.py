@@ -396,10 +396,10 @@ plt.rcParams.update({'font.size': 16})
 # dataLabel = ["Med seriemotstand"]
 # bodeDiagram(bodefiles, dataLabel,3)
 
-# average test
-# bodefiles = ["bode/amplitude/3V3filter_bode_v4_10mV_mean1.csv","bode/amplitude/3V3filter_bode_v4_10mV_mean10.csv","bode/amplitude/3V3filter_bode_v4_10mV_mean20.csv","bode/amplitude/3V3filter_bode_v4_10mV_mean50.csv","bode/amplitude/3V3filter_bode_v4_10mV_mean100.csv"]
-# dataLabel = ["1 sample","10 samples","20 samples","50 samples","100 samples"]
-# bodeDiagram(bodefiles, dataLabel,4, False)
+# # average test
+# bodefiles = ["bode/amplitude-med-wedge/3V3filter_bode_v4_10mV_mean1.csv","bode/amplitude-med-wedge/3V3filter_bode_v4_10mV_mean10.csv","bode/amplitude-med-wedge/3V3filter_bode_v4_10mV_mean20.csv","bode/amplitude-med-wedge/3V3filter_bode_v4_10mV_mean50.csv","bode/amplitude-med-wedge/3V3filter_bode_v4_10mV_mean100.csv"]
+# dataLabel = ["1 måling","10 målinger","20 målinger","50 målinger","100 målinger"]
+# bodeDiagram(bodefiles, dataLabel,4, False,5)
 
 # # amplitude test -> discover wedge issue
 # bodefiles = ["bode/amplitude-med-wedge/3V3filter_bode_v4_10mV_mean10.csv","bode/amplitude-med-wedge/3V3filter_bode_v4_20mV_mean10.csv","bode/amplitude-med-wedge/3V3filter_bode_v4_50mV_mean10.csv","bode/amplitude-med-wedge/3V3filter_bode_v4_100mV_mean10.csv","bode/amplitude-med-wedge/3V3filter_bode_v4_200mV_mean10.csv","bode/amplitude-med-wedge/3V3filter_bode_v4_500mV_mean10.csv","bode/amplitude-med-wedge/3V3filter_bode_v4_1000mV_mean10.csv"]
