@@ -1,6 +1,6 @@
 (ExpressProject "SensorerOgInstrummentering_Default_circuit"
   (ProjectVersion "19981106")
-  (SoftwareVersion "23.1 S001 (4155653)  [11/15/2023]-[02/06/24]")
+  (SoftwareVersion "23.1 S001 (4155653)  [11/15/2023]-[02/12/24]")
   (ProjectType "Analog or A/D Mixed Mode")
   (Folder "Design Resources"
     (Folder "Library")
@@ -117,8 +117,8 @@
       (Type "COrSchematicDoc")
       (Frame
         (Placement "44 0 1 -1 -1 5 24 5 1180 24 826")
-        (Scroll "793 365")
-        (Zoom "184")
+        (Scroll "-10 0")
+        (Zoom "96")
         (Occurrence "/"))
       (Path
          "C:\USERS\BENJA\DOCUMENTS\SENSORER OG INSTRUMENTERING\SENSORLAB\CIRCUITS\SENSOREROGINSTRUMMENTERING_DEFAULT_CIRCUIT.DSN")
@@ -131,10 +131,10 @@
         (Scroll "39 101")
         (Zoom "156"))
       (Frame
-        (Placement "44 0 1 -1 -1 -1 -1 5 1180 24 826")
-        (Scroll "-34 -5")
-        (Zoom "92")
-        (Occurrence "/LP_filter1"))
+        (Placement "44 0 1 -1 -1 5 24 5 1180 24 826")
+        (Scroll "-10 0")
+        (Zoom "96")
+        (Occurrence "/LPF"))
       (Path
          "C:\USERS\BENJA\DOCUMENTS\SENSORER OG INSTRUMENTERING\SENSORLAB\CIRCUITS\SENSOREROGINSTRUMMENTERING_DEFAULT_CIRCUIT.DSN")
       (Schematic "3V3_LP_Filter")
@@ -147,9 +147,9 @@
         (Zoom "113"))
       (Frame
         (Placement "44 0 1 -1 -1 -1 -1 5 1180 24 826")
-        (Scroll "-34 -5")
-        (Zoom "92")
-        (Occurrence "/Pi_wedge1"))
+        (Scroll "206 508")
+        (Zoom "184")
+        (Occurrence "/Pi_wedge"))
       (Path
          "C:\USERS\BENJA\DOCUMENTS\SENSORER OG INSTRUMENTERING\SENSORLAB\CIRCUITS\SENSOREROGINSTRUMMENTERING_DEFAULT_CIRCUIT.DSN")
       (Schematic "Pi_Wedge")
@@ -162,9 +162,9 @@
         (Zoom "113"))
       (Frame
         (Placement "44 0 1 -1 -1 -1 -1 5 1180 24 826")
-        (Scroll "-34 -5")
-        (Zoom "92")
-        (Occurrence "/RPI1"))
+        (Scroll "-10 0")
+        (Zoom "96")
+        (Occurrence "/Raspberry_Pi_3B"))
       (Path
          "C:\USERS\BENJA\DOCUMENTS\SENSORER OG INSTRUMENTERING\SENSORLAB\CIRCUITS\SENSOREROGINSTRUMMENTERING_DEFAULT_CIRCUIT.DSN")
       (Schematic "Pi")
