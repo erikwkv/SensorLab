@@ -2,18 +2,13 @@ import numpy as np
 from scipy.signal import freqs
 import matplotlib.pyplot as plt
 
-# def H_tot(w,L,C_1,C_2,R_1,R_2):
-#     return 1/(1-w**2*L*C_2+1j*w*R_2*C_2 + 1j*w*R_1*C_1 - 1j*w**3*R_1*L*C_1*C_2 -w**2*R_1*R_2*C_1*C_2)
-
-
 
 freqs = np.linspace(0.1,10000,100000)
-# R_1 = 0.2
 R_2 = 6.6+11
 L = 403e-3
 # C_1 = 520e-6
 C_2 = 470.1e-6
-# amp = abs(H_tot(omegas,L,C_1,C_2,R_1,R_2))
+
 
 amp1 = np.abs(1/(1-(2*np.pi*freqs)**2*C_2*L+1j*(2*np.pi*freqs)*R_2*C_2))
 

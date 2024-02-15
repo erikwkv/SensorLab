@@ -350,7 +350,38 @@ def scopeGraph(dataList, datalabel,col, col2=-1):
 #phase(dataList, dataLabel,2)
 plt.rcParams.update({'font.size': 16})
 
+#Plotting theoretical bode diagram from the frequency response of the filter.
+def theoretical_bode_plot(R,C,L):
+  freqs = np.linspace(0.1,10000,100000)
+  R_2 = 6.6+11
+  L = 403e-3
+  # C_1 = 520e-6
+  C_2 = 470.1e-6
+  def freq_resp(R,C,L,freqs):
+    return np.abs(1/(1-(2*np.pi*freqs)**2*C*L+1j*(2*np.pi*freqs)*R*C))
 
+  #cut-off frequency
+  w_c = np.sqrt((np.sqrt(C_2**2 *R_2**4 - 4*C_2*L *R_2**2 + 8*L**2) - C_2* R_2**2 + 2* L)/(C_2* L**2))/np.sqrt(2)
+  f_c = w_c/(2*np.pi)
+  amp_resp = abs(freq_resp(R,C,L,freqs))
+
+  fig, ax = plt.subplots(1,figsize=(10,10))
+  ax.set_xscale('log')
+  ax.plot(freqs,20*np.log10(amp_resp))
+  #-3dB line
+  print(f_c)
+  ax.axhline(y=-3,color='red',linestyle='--')
+  #cut-off frequency
+  ax.axvline(x=f_c,color='red',linestyle='--',label=f'f_c = {f_c:.2f} Hz')
+  ax.set_title(f"Frekvensrespons av pi-filteret")
+  ax.set_xlabel("Frekvens [Hz]")
+  ax.set_ylabel("Relativ amplitude [dB]")
+  ax.legend()
+  ax.grid()
+  plt.show()
+  fig.savefig('bode_theoretical.png')
+
+theoretical_bode_plot(15,470.1e-6,403e-3)
 
 #bodefiles = ["bode/3V3filter_bode_v1.csv", "bode/3V3filter_bode_v2_11ohm_series.csv","bode/3V3filter_bode_v2_17ohm_series.csv","bode\3V3filter_bode_v2_33ohm_series.csv","bode/3V3filter_bode_v2_100ohm_series.csv","bode/3V3filter_bode_v2.csv"]
 #bodefiles = ["bode/3V3filter_bode_v1.csv","bode/3V3filter_bode_v2_11ohm_series.csv","bode/3V3filter_bode_v2_17ohm_series.csv","bode/3V3filter_bode_v2_100ohm_series.csv","bode/3V3filter_bode_v2.csv"]
@@ -360,7 +391,7 @@ dataLabel = ["3V3filter_v1","3V3filter_v2_11ohm_series","3V3filter_v2_17ohm_seri
 
 bodeDiagram(bodefiles, dataLabel)
 
-bodefiles = ["bode\filter3V3_bode_v3_11ohm_series.csv","bode\filter3V3_bode_v4_11ohm_series.csv"]
+bodefiles = ["bode/filter3V3_bode_v3_11ohm_series.csv","bode/filter3V3_bode_v4_11ohm_series.csv"]
 dataLabel = ["filter3V3_v3_11ohm_series","filter3V3_v4_11ohm_series"]
 
 bodeDiagram(bodefiles, dataLabel)
