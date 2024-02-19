@@ -12,7 +12,7 @@ def return_angle(filename):
 
 
     #new time axis for the autocorrelation
-    up_factor = 8
+    up_factor = 2
     x_vals = np.linspace(-len(mic_1_ac)/2,len(mic_1_ac)/2,len(mic_1_ac)*up_factor)
     x_in = np.linspace(-len(mic_1_ac)/2,len(mic_1_ac)/2,len(mic_1_ac))
 
@@ -31,7 +31,7 @@ def return_angle(filename):
     time_axis2 = 1e3*sample_period*np.linspace(-len(data)/2,len(data)/2,len(crosscorr_2_1))
 
     #slice cross-correlation to only look at the peaks around 0
-    slice = 40
+    slice = 15
     crosscorr_2_1 = crosscorr_2_1[int(len(crosscorr_2_1)/2)-slice:int(len(crosscorr_2_1)/2)+slice]
     crosscorr_3_1 = crosscorr_3_1[int(len(crosscorr_3_1)/2)-slice:int(len(crosscorr_3_1)/2)+slice]
     crosscorr_3_2 = crosscorr_3_2[int(len(crosscorr_3_2)/2)-slice:int(len(crosscorr_3_2)/2)+slice]
@@ -41,34 +41,34 @@ def return_angle(filename):
     peaks3_1, _ = find_peaks(crosscorr_3_1)
     peaks3_2, _ = find_peaks(crosscorr_3_2)
 
-    # plt.plot(time_axis2,crosscorr_2_1)
-    # plt.plot(time_axis2[peaks2_1],crosscorr_2_1[peaks2_1],'ro')
-    # plt.show()
+    plt.plot(time_axis2,crosscorr_2_1)
+    plt.plot(time_axis2[peaks2_1],crosscorr_2_1[peaks2_1],'ro')
+    plt.show()
 
-    # fig, ax = plt.subplots(3,1)
-    # ax[0].plot(time_axis2,crosscorr_2_1)
-    # ax[0].plot(time_axis2[peaks2_1],crosscorr_2_1[peaks2_1],'ro')
-    # ax[0].set_title('Cross-correlation between Mic 2 and Mic 1')
-    # ax[0].set_xlabel('Time [ms]')
-    # ax[0].set_ylabel('Amplitude')
-    # ax[0].set_xlim([-slice*sample_period*1e3,slice*sample_period*1e3])
+    fig, ax = plt.subplots(3,1)
+    ax[0].plot(time_axis2,crosscorr_2_1)
+    ax[0].plot(time_axis2[peaks2_1],crosscorr_2_1[peaks2_1],'ro')
+    ax[0].set_title('Cross-correlation between Mic 2 and Mic 1')
+    ax[0].set_xlabel('Time [ms]')
+    ax[0].set_ylabel('Amplitude')
+    ax[0].set_xlim([-slice*sample_period*1e3,slice*sample_period*1e3])
 
-    # ax[1].plot(time_axis2,crosscorr_3_1)
-    # ax[1].plot(time_axis2[peaks3_1],crosscorr_3_1[peaks3_1],'ro')
-    # ax[1].set_title('Cross-correlation between Mic 3 and Mic 1')
-    # ax[1].set_xlabel('Time [ms]')
-    # ax[1].set_ylabel('Amplitude')
-    # ax[1].set_xlim([-slice*sample_period*1e3,slice*sample_period*1e3])
+    ax[1].plot(time_axis2,crosscorr_3_1)
+    ax[1].plot(time_axis2[peaks3_1],crosscorr_3_1[peaks3_1],'ro')
+    ax[1].set_title('Cross-correlation between Mic 3 and Mic 1')
+    ax[1].set_xlabel('Time [ms]')
+    ax[1].set_ylabel('Amplitude')
+    ax[1].set_xlim([-slice*sample_period*1e3,slice*sample_period*1e3])
 
-    # ax[2].plot(time_axis2,crosscorr_3_2)
-    # ax[2].plot(time_axis2[peaks3_2],crosscorr_3_2[peaks3_2],'ro')
-    # ax[2].set_title('Cross-correlation between Mic 3 and Mic 2')
-    # ax[2].set_xlabel('Time [ms]')
-    # ax[2].set_ylabel('Amplitude')
-    # ax[2].set_xlim([-slice*sample_period*1e3,slice*sample_period*1e3])
+    ax[2].plot(time_axis2,crosscorr_3_2)
+    ax[2].plot(time_axis2[peaks3_2],crosscorr_3_2[peaks3_2],'ro')
+    ax[2].set_title('Cross-correlation between Mic 3 and Mic 2')
+    ax[2].set_xlabel('Time [ms]')
+    ax[2].set_ylabel('Amplitude')
+    ax[2].set_xlim([-slice*sample_period*1e3,slice*sample_period*1e3])
 
-    # plt.tight_layout()
-    # plt.show()
+    plt.tight_layout()
+    plt.show()
 
     #find values of the peaks
     time_2_1 = time_axis2[peaks2_1]
@@ -95,21 +95,21 @@ def return_angle(filename):
 
 angles = []
 angles.append(return_angle('Lab2/theta-measurements/a180out-2024-01-08-10.00.29.bin'))
-# angles.append(return_angle('Lab2/theta-measurements/a180out-2024-01-08-10.00.25.bin'))
-# angles.append(return_angle('Lab2/theta-measurements/a180out-2024-01-08-10.00.21.bin'))
-# angles.append(return_angle('Lab2/theta-measurements/a180out-2024-01-08-10.00.17.bin'))
-# angles.append(return_angle('Lab2/theta-measurements/a180out-2024-01-08-10.00.14.bin'))
-angles.append(return_angle('Lab2/theta-measurements/a150out-2024-01-08-09.58.47.bin'))
+angles.append(return_angle('Lab2/theta-measurements/a180out-2024-01-08-10.00.25.bin'))
+angles.append(return_angle('Lab2/theta-measurements/a180out-2024-01-08-10.00.21.bin'))
+angles.append(return_angle('Lab2/theta-measurements/a180out-2024-01-08-10.00.17.bin'))
+angles.append(return_angle('Lab2/theta-measurements/a180out-2024-01-08-10.00.14.bin'))
+# angles.append(return_angle('Lab2/theta-measurements/a150out-2024-01-08-09.58.47.bin'))
 # angles.append(return_angle('Lab2/theta-measurements/a150out-2024-01-08-09.58.44.bin'))
 # angles.append(return_angle('Lab2/theta-measurements/a150out-2024-01-08-09.58.40.bin'))
 # angles.append(return_angle('Lab2/theta-measurements/a150out-2024-01-08-09.58.36.bin'))
 # angles.append(return_angle('Lab2/theta-measurements/a150out-2024-01-08-09.58.33.bin'))
-angles.append(return_angle('Lab2/theta-measurements/a90out-2024-01-08-09.57.28.bin'))
+# angles.append(return_angle('Lab2/theta-measurements/a90out-2024-01-08-09.57.28.bin'))
 # angles.append(return_angle('Lab2/theta-measurements/a90out-2024-01-08-09.57.24.bin'))
 # angles.append(return_angle('Lab2/theta-measurements/a90out-2024-01-08-09.57.21.bin'))
 # angles.append(return_angle('Lab2/theta-measurements/a90out-2024-01-08-09.57.13.bin'))
 # angles.append(return_angle('Lab2/theta-measurements/a90out-2024-01-08-09.57.13.bin'))
-angles.append(return_angle('Lab2/theta-measurements/a30out-2024-01-08-09.56.26.bin'))
+# angles.append(return_angle('Lab2/theta-measurements/a30out-2024-01-08-09.56.26.bin'))
 # angles.append(return_angle('Lab2/theta-measurements/a30out-2024-01-08-09.56.22.bin'))
 # angles.append(return_angle('Lab2/theta-measurements/a30out-2024-01-08-09.56.19.bin'))
 # angles.append(return_angle('Lab2/theta-measurements/a30out-2024-01-08-09.56.16.bin'))

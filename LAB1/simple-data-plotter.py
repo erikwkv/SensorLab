@@ -17,18 +17,19 @@ adc_5_ac = (data[:,4] - np.mean(data[:,4]))*res_factor
 
 
 time_axis = 1e3*sample_period*np.arange(len(adc_1_ac))
-# plt.plot(time_axis,adc_1_ac, label='ADC 1')
-# plt.plot(time_axis,adc_2_ac, label='ADC 2')
-# plt.plot(time_axis,adc_3_ac, label='ADC 3')
-# plt.plot(time_axis,adc_4_ac, label='ADC 4')
-# plt.plot(time_axis,adc_5_ac, label='ADC 5')
-# plt.xlabel('Tid [ms]')
-# plt.ylabel('Spenning [V]')
+plt.plot(time_axis,adc_1_ac, label='ADC 1')
+plt.plot(time_axis,adc_2_ac, label='ADC 2')
+plt.plot(time_axis,adc_3_ac, label='ADC 3')
+plt.plot(time_axis,adc_4_ac, label='ADC 4')
+plt.plot(time_axis,adc_5_ac, label='ADC 5')
+plt.xlabel('Tid [ms]')
+plt.ylabel('Spenning [V]')
 # plt.title('Spenning som funksjon av tid for de fem ADCene')
-# plt.legend()
-# plt.xlim(20,25)
-# plt.ylim(-1.5,1.5)
-# plt.show()
+plt.legend()
+plt.grid()
+plt.xlim(20,25)
+plt.ylim(-1.5,1.5)
+plt.show()
 
 
 # print(data.shape)
@@ -46,13 +47,14 @@ Y_dB = relative_Y - np.max(relative_Y)
 
 
 # plt.yscale('log')
-# plt.plot(freqs,Y_dB)
-# plt.xlabel('Frekvens [Hz]')
-# plt.ylabel('Relativ amplitude [dB]')
+plt.plot(freqs,Y_dB)
+plt.xlabel('Frekvens [Hz]')
+plt.ylabel('Relativ amplitude [dB]')
 # plt.title('Relativ amplituderespons for signalet fra én ADC uten vindu')
-# plt.xlim(0,5000)
-# plt.ylim(-100,5)
-# plt.show()
+plt.xlim(0,5000)
+plt.ylim(-100,5)
+plt.grid()
+plt.show()
 
 
 #windowed function fft
@@ -69,19 +71,20 @@ Y_windowed_dB = rel_Y_wind - np.max(rel_Y_wind)
 # positive_Y_windowed = abs(Y_windowed)[:len(Y_windowed)//2]
 
 # plt.yscale('log')
-# plt.plot(freqs_windowed, Y_windowed_dB)
+plt.plot(freqs_windowed, rel_Y_wind)
 # plt.title('Relativ amplituderespons for signalet fra én ADC med Hanning-vindu')
-# plt.xlabel('Frekvens [Hz]')
-# plt.ylabel('Relativ amplitude [dB]')
-# plt.xlim(0,5000)
-# plt.show()
+plt.xlabel('Frekvens [Hz]')
+plt.ylabel('Relativ amplitude [dB]')
+plt.xlim(0,5000)
+plt.grid()
+plt.show()
 
 #Power plot
 power = abs(Y_windowed)**2
 rel_pow = 10*np.log10(power)
 
 plt.plot(freqs_windowed,power)
-plt.title('Effektspekter for signalet fra én ADC med Hanning-vindu')
+# plt.title('Effektspekter for signalet fra én ADC med Hanning-vindu')
 plt.xlabel('Frekvens [Hz]')
 plt.ylabel('Effekt [V^2]')
 plt.xlim(0,5000)

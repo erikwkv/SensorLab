@@ -16,11 +16,11 @@ mic_2_ac = (data[1:,2] - np.mean(data[:,2]))*0.00081
 
 
 time_axis = 1e3*sample_period*np.arange(len(data)-1)
-# plt.plot(time_axis,mic_1_ac,label='Mic 1')
-# plt.plot(time_axis,mic_2_ac,label='Mic 2')
-# plt.plot(time_axis,mic_3_ac,label='Mic 3')
-# plt.legend()
-# plt.show()
+plt.plot(time_axis,mic_1_ac,label='Mic 1')
+plt.plot(time_axis,mic_2_ac,label='Mic 2')
+plt.plot(time_axis,mic_3_ac,label='Mic 3')
+plt.legend()
+plt.show()
 
 #new time axis for the autocorrelation
 
@@ -40,7 +40,7 @@ mic_3_interp = np.interp(x_vals,x_in,mic_3_ac)
 # plt.grid()
 # plt.show()
 
-# auto_corr_1 = np.correlate(mic_1_interp,mic_1_interp,mode='same')
+auto_corr_1 = np.correlate(mic_1_interp,mic_1_interp,mode='same')
 
 
 # plt.plot(time_axis2,auto_corr_1)
