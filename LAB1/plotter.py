@@ -1,4 +1,5 @@
 from turtle import color, width
+import matplotlib.colors as mcolors
 import matplotlib.pyplot as plt
 import csv
 from matplotlib.patches import Ellipse, Rectangle
@@ -19,13 +20,13 @@ def readCSV(path):
       data.append(values)
   return data
 
-def magnitudeBode(dataList, dataLabel,col, col2=-1):
+def magnitudeBode(dataList, dataLabel,col, col2=-1, line=True,legend_cols=3):
   #Figure size (x,y) in inches. Move Legend if changed drasticly to avoid clipping
   fig = plt.figure(1, figsize=(14.5, 6.5))
   
   #number of rows/cols of subplots 
   ax = fig.add_subplot(1, 1, 1)
-  #plt.minorticks_on()
+  # plt.minorticks_on()
   #max num ticks in axis
   max_yticks = 15
   max_xticks = 10 #irrelevant due to log scale
@@ -47,25 +48,50 @@ def magnitudeBode(dataList, dataLabel,col, col2=-1):
   #ax.xaxis.minorTicks()
   #ax.xaxis.grid(b=True, which='minor', linestyle=(0, (1,3)))
 
-
+  print(col2)
   #plot data
   for i in range (0,len(dataList)):
     time = [p[0] for p in dataList[i]]
-    if col2!=-1:
-      trace1 = [p[col2] for p in dataList[i]]
-      plt.plot(time, trace1, "-")
+    colors = list(mcolors.TABLEAU_COLORS) + list(mcolors.BASE_COLORS) + list(mcolors.CSS4_COLORS)
     
-    trace1 = [p[col] for p in dataList[i]]
-    plt.plot(time, trace1, "-", alpha=0.8,label = dataLabel[i])
+    if col2==1:
+      trace1 = [p[col2] for p in dataList[i]]
+      plt.plot(time, trace1, "--", alpha=0.8, label = dataLabel[i]+" (input)", color=colors[i])
+      trace2 = [p[col] for p in dataList[i]]
+      plt.plot(time, trace2, "-", alpha=0.8,label = dataLabel[i] +" (output)", color=colors[i])
+    elif col2==2: #relative plot of channel 2-1
+      trace = [p[2]-p[1] for p in dataList[i]]
+      plt.plot(time, trace, "-", alpha=0.8,label = dataLabel[i], color=colors[i])
+    
+    elif col2==3: #relative plot of channel 2-1 and ch1 and ch2
+      trace1 = [p[1] for p in dataList[i]]
+      plt.plot(time, trace1, "-", alpha=0.8, label = dataLabel[i]+" (input)", color=colors[i*3])
+      trace2 = [p[2] for p in dataList[i]]
+      plt.plot(time, trace2, "-", alpha=0.8, label = dataLabel[i] +" (output)", color=colors[i*3+2])
+
+      trace3 = [p[2]-p[1] for p in dataList[i]]
+      plt.plot(time, trace3, "-", alpha=0.8, label = dataLabel[i] +" (shifted)", color=colors[i*3+1])
+    elif col2==4: #both plot with input and output, but all data offset 10 dB
+      # trace1 = [p[1]+i*10 for p in dataList[i]]
+      # plt.plot(time, trace1, "--", alpha=0.8, label = dataLabel[i]+" (input)", color=colors[i])
+      trace2 = [p[2]+i*10 for p in dataList[i]]
+      # plt.plot(time, trace2, "-", alpha=0.8,label = dataLabel[i] +" (output)", color=colors[i])
+      plt.plot(time, trace2, "-", alpha=0.8,label = dataLabel[i], color=colors[i])
+    
+    else:  
+      trace2 = [p[col] for p in dataList[i]]
+      plt.plot(time, trace2, "-", alpha=0.8,label = dataLabel[i], color=colors[i])
     
 
   #labels  
   plt.xlabel("Frekvens [Hz]")
-  plt.ylabel("Demping [dB]")
+  plt.ylabel("Magnitude [dB]")
   
   
   
   #Final touch
+  if (line):
+    plt.axhline(y=-3, color='r', linestyle='dotted', label='-3dB')
   # ellipse = Ellipse(xy=(580, -24), width=900, height=10, 
   #                       edgecolor='r', fc='None', lw=2)
   # ax.add_patch(ellipse)
@@ -75,9 +101,9 @@ def magnitudeBode(dataList, dataLabel,col, col2=-1):
   #plt.plot(ypoints, linestyle = 'dotted')
 #   plt.axvline(x=5900, ymin=-0.95, ymax=0.95, linestyle = (0,(2,5)), color = 'cyan',label='$f_s = 5650$ Hz')
 #   plt.axvline(x=2950, ymin=-0.95, ymax=0.95, linestyle = (0,(2,5)), color = 'magenta',label=r'$\frac{ f_s}{2} = 2950$ Hz')
-#   plt.axvline(x=2212.5, ymin=-0.95, ymax=0.95, linestyle = (0,(2,5)), color = 'tab:red',label='$f_c  = 2212,5$ Hz')
+#plt.axvline(x=2212.5, ymin=-0.95, ymax=0.95, linestyle = (0,(2,5)), color = 'tab:red',label='$f_c  = 2212,5$ Hz')
 #   #legend. Source: https://stackoverflow.com/questions/4700614/how-to-put-the-legend-outside-the-plot-in-matplotlib
-  plt.legend(bbox_to_anchor=(0.5, -0.15), loc="upper center",fancybox=True, ncol=3, borderaxespad=0)
+  plt.legend(bbox_to_anchor=(0.5, -0.15), loc="upper center",fancybox=True, ncol=legend_cols, borderaxespad=0)
   plt.tight_layout(rect=[0,0,1,0.98])
 
   plt.show()
@@ -193,13 +219,13 @@ def phase(dataList, dataLabel,col):
   plt.title('Bode diagram fase')
   plt.show()
 
-def bodeDiagram(fileList,dataLabel):
+def bodeDiagram(fileList,dataLabel,mode, line=True, legend_cols=3):
   if len(fileList)>len(dataLabel):
     print("\n\nMissing labels for grafs\n\n")
   dataList= []
   for i in range (0,len(fileList)):
     dataList.append(readCSV(fileList[i]))
-  magnitudeBode(dataList, dataLabel,2)
+  magnitudeBode(dataList, dataLabel,2,mode, line, legend_cols)
   #phase(dataList, dataLabel,3)
 
 def spektrumDiagram(fileList,dataLabel):
@@ -257,7 +283,7 @@ def xyPlot(dataList, dataLabel,col, col2=-1):
   plt.ylabel("Spenning [V]")
   
   #legend. Source: https://stackoverflow.com/questions/4700614/how-to-put-the-legend-outside-the-plot-in-matplotlib
-  plt.legend(dataLabel, bbox_to_anchor=(0.5, -0.15), loc="upper center",fancybox=True, ncol=3, borderaxespad=0)
+  plt.legend(dataLabel, bbox_to_anchor=(0.5, -0.15), loc="upper center",fancybox=True, ncol=2, borderaxespad=0)
   plt.tight_layout(rect=[0,0,1,0.98])
 
   #ellipse = Ellipse(xy=(580, -24), width=900, height=10, edgecolor='r', fc='None', lw=2)
@@ -385,16 +411,48 @@ theoretical_bode_plot(15,470.1e-6,403e-3)
 
 #bodefiles = ["bode/3V3filter_bode_v1.csv", "bode/3V3filter_bode_v2_11ohm_series.csv","bode/3V3filter_bode_v2_17ohm_series.csv","bode\3V3filter_bode_v2_33ohm_series.csv","bode/3V3filter_bode_v2_100ohm_series.csv","bode/3V3filter_bode_v2.csv"]
 #bodefiles = ["bode/3V3filter_bode_v1.csv","bode/3V3filter_bode_v2_11ohm_series.csv","bode/3V3filter_bode_v2_17ohm_series.csv","bode/3V3filter_bode_v2_100ohm_series.csv","bode/3V3filter_bode_v2.csv"]
-bodefiles = ["bode/bode-with-metadata/3V3filter_bode_v4_11ohm_series copy.csv","bode/bode-with-metadata/3V3filter_bode_v2_17ohm_series copy.csv","bode/bode-with-metadata/3V3filter_bode_v2_33ohm_series copy.csv","bode/bode-with-metadata/3V3filter_bode_v2_100ohm_series copy.csv","bode/bode-with-metadata/3V3filter_bode_v2 copy.csv"]
-dataLabel = ["3V3filter_v1","3V3filter_v2_11ohm_series","3V3filter_v2_17ohm_series","3V3filter_v2_33ohm_series","3V3filter_v2_100ohm_series","3V3filter_v2"]
-#dataLabel = [1,2,3,4,5,6,7,8,9,0]
 
-bodeDiagram(bodefiles, dataLabel)
+# #amplitudetest
+# bodefiles = ["bode/3V3filter_bode_v4_uten_last.csv","bode/3V3filter_bode_v4_1V_amplitude_uten_last.csv"]
+# dataLabel = ["0.2V amplitude","1V amplitude"]
+# bodeDiagram(bodefiles, dataLabel,1)
 
+<<<<<<< HEAD
 bodefiles = ["bode/filter3V3_bode_v3_11ohm_series.csv","bode/filter3V3_bode_v4_11ohm_series.csv"]
 dataLabel = ["filter3V3_v3_11ohm_series","filter3V3_v4_11ohm_series"]
+=======
+# #seriemotstand test
+# bodefiles = ["bode/3V3filter_bode_v4_10.6ohm_uten_last.csv","bode/3V3filter_bode_v4_uten_last.csv"]
+# dataLabel = ["Med seriemotstand","uten seriemotstand"]
+# bodeDiagram(bodefiles, dataLabel,1)
+>>>>>>> 07f442bbc3e48919cce6b1ed207dcecb69af4655
 
-bodeDiagram(bodefiles, dataLabel)
+# #shifted view
+# bodefiles = ["bode/3V3filter_bode_v4_10.6ohm_uten_last.csv"]
+# dataLabel = ["Med seriemotstand"]
+# bodeDiagram(bodefiles, dataLabel,3)
+
+# average test
+# bodefiles = ["bode/amplitude/3V3filter_bode_v4_10mV_mean1.csv","bode/amplitude/3V3filter_bode_v4_10mV_mean10.csv","bode/amplitude/3V3filter_bode_v4_10mV_mean20.csv","bode/amplitude/3V3filter_bode_v4_10mV_mean50.csv","bode/amplitude/3V3filter_bode_v4_10mV_mean100.csv"]
+# dataLabel = ["1 sample","10 samples","20 samples","50 samples","100 samples"]
+# bodeDiagram(bodefiles, dataLabel,4, False)
+
+# # amplitude test -> discover wedge issue
+# bodefiles = ["bode/amplitude-med-wedge/3V3filter_bode_v4_10mV_mean10.csv","bode/amplitude-med-wedge/3V3filter_bode_v4_20mV_mean10.csv","bode/amplitude-med-wedge/3V3filter_bode_v4_50mV_mean10.csv","bode/amplitude-med-wedge/3V3filter_bode_v4_100mV_mean10.csv","bode/amplitude-med-wedge/3V3filter_bode_v4_200mV_mean10.csv","bode/amplitude-med-wedge/3V3filter_bode_v4_500mV_mean10.csv","bode/amplitude-med-wedge/3V3filter_bode_v4_1000mV_mean10.csv"]
+# dataLabel = ["10 mV","20 mV","50 mV","100 mV","200 mV","500 mV","1000 mV"]
+# bodeDiagram(bodefiles, dataLabel,1, False,5)
+# bodeDiagram(bodefiles, dataLabel,2, True,5)
+
+# amplitude test without wedge
+bodefiles = ["bode/amplitude-uten-wedge/3V3filter_bode_v4_10mV_mean10.csv","bode/amplitude-uten-wedge/3V3filter_bode_v4_20mV_mean10.csv","bode/amplitude-uten-wedge/3V3filter_bode_v4_50mV_mean10.csv","bode/amplitude-uten-wedge/3V3filter_bode_v4_100mV_mean10.csv","bode/amplitude-uten-wedge/3V3filter_bode_v4_200mV_mean10.csv","bode/amplitude-uten-wedge/3V3filter_bode_v4_500mV_mean10.csv","bode/amplitude-uten-wedge/3V3filter_bode_v4_1000mV_mean10.csv"]
+dataLabel = ["10 mV","20 mV","50 mV","100 mV","200 mV","500 mV","1000 mV"]
+bodeDiagram(bodefiles, dataLabel,1, False,5)
+bodeDiagram(bodefiles, dataLabel,2, True,5)
+
+# bodefiles = ["bode\filter3V3_bode_v3_11ohm_series.csv","bode\filter3V3_bode_v4_11ohm_series.csv"]
+# dataLabel = ["filter3V3_v3_11ohm_series","filter3V3_v4_11ohm_series"]
+
+# bodeDiagram(bodefiles, dataLabel)
 
 spektrumFiles = ["Data\D7 spektrum 100 Amaks, 5mA.csv","Data\D7 spektrum 100k Amaks, 5mA.csv"]
 
