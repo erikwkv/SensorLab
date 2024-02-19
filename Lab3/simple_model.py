@@ -37,3 +37,16 @@ musr = 100 * (17.6*(wavelength/500)**-4 + 18.78*(wavelength/500)**-0.22)
 delta = np.sqrt(1/(3*(mua + musr)*mua))
 
 print(delta)
+
+def phi_of_z(z, mua, musr, delta):
+    C = np.sqrt(3*mua*(musr+mua))
+    phi_0 = 1/(2*delta*mua)
+    return phi_0 * np.exp(-C*z)
+
+def transmittance(z, mua, musr, delta):
+    phi_0 = 1/(2*delta*mua)
+    transmitted = phi_of_z(z, mua, musr, delta)
+    percent = (transmitted/phi_0)*100
+    return percent
+
+print(transmittance(0.000874, mua, musr, delta))
