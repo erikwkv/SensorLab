@@ -13,9 +13,3 @@ plt.xlabel('x')
 plt.ylabel('y')
 plt.title('Data from tommel2')
 plt.show()
-
-# # Plot the data
-# plt.xlabel('x')
-# plt.ylabel('y')
-# plt.title('Data from tommel2')
-# plt.show()
