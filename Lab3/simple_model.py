@@ -49,4 +49,4 @@ def transmittance(z, mua, musr, delta):
     percent = (transmitted/phi_0)*100
     return percent
 
-print(transmittance(0.000874, mua, musr, delta))
+print(transmittance(0.017, mua, musr, delta))
