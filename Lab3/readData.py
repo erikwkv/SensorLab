@@ -7,8 +7,15 @@ y = pd.read_csv('tommel2', sep=' ')
 
 # Plot the data
 # Plot the data
-time = np.linspace(0,10,len(y.iloc[:, 1]))
-plt.plot(time,y.iloc[:, 1], label='Data from tommel2')
+red = y.iloc[:, 0]
+green = y.iloc[:, 1]
+blue = y.iloc[:, 2]
+
+
+time = np.linspace(0,10,len(green))
+plt.plot(time,red, label='red', color='red')
+plt.plot(time,green, label='green', color='green')
+plt.plot(time,blue, label='blue', color='blue')
 plt.xlabel('x')
 plt.ylabel('y')
 plt.title('Data from tommel2')
