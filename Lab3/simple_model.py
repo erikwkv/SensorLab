@@ -4,10 +4,10 @@ import matplotlib.pyplot as plt
 muabo = np.genfromtxt("./muabo.txt", delimiter=",")
 muabd = np.genfromtxt("./muabd.txt", delimiter=",")
 
-red_wavelength = 605 # Replace with wavelength in nanometres
+red_wavelength = 600 # Replace with wavelength in nanometres
 green_wavelength = 515 # Replace with wavelength in nanometres
 blue_wavelength = 460 # Replace with wavelength in nanometres
-7
+
 wavelength = np.array([red_wavelength, green_wavelength, blue_wavelength])
 
 def mua_blood_oxy(x): return np.interp(x, muabo[:, 0], muabo[:, 1])
@@ -50,7 +50,7 @@ def transmittance(z, mua, musr, delta):
     percent = (transmitted/phi_0)*100
     return percent
 
-print(transmittance(0.000874, mua, musr, delta))
+print(transmittance(0.009, mua, musr, delta))
 
 
 # TODO C: calculate depth of penetration
