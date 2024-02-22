@@ -1,8 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-muabo = np.genfromtxt("./muabo.txt", delimiter=",")
-muabd = np.genfromtxt("./muabd.txt", delimiter=",")
+muabo = np.genfromtxt("Lab3/muabo.txt", delimiter=",")
+muabd = np.genfromtxt("Lab3/muabd.txt", delimiter=",")
 
 red_wavelength = 600 # Replace with wavelength in nanometres
 green_wavelength = 515 # Replace with wavelength in nanometres
@@ -13,7 +13,7 @@ wavelength = np.array([red_wavelength, green_wavelength, blue_wavelength])
 def mua_blood_oxy(x): return np.interp(x, muabo[:, 0], muabo[:, 1])
 def mua_blood_deoxy(x): return np.interp(x, muabd[:, 0], muabd[:, 1])
 
-bvf = 0.01 # Blood volume fraction, average blood amount in tissue
+bvf = 1 # Blood volume fraction, average blood amount in tissue
 oxy = 0.8 # Blood oxygenation
 
 # Absorption coefficient ($\mu_a$ in lab text)
@@ -37,7 +37,7 @@ musr = 100 * (17.6*(wavelength/500)**-4 + 18.78*(wavelength/500)**-0.22)
 #delta formula
 delta = np.sqrt(1/(3*(mua + musr)*mua))
 
-print(delta)
+# print(delta)
 
 def phi_of_z(z, mua, musr, delta):
     C = np.sqrt(3*mua*(musr+mua))
@@ -50,7 +50,7 @@ def transmittance(z, mua, musr, delta):
     percent = (transmitted/phi_0)*100
     return percent
 
-print(transmittance(0.009, mua, musr, delta))
+print(transmittance(0.0003, mua, musr, delta))
 
 
 # TODO C: calculate depth of penetration
