@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # Read the data from the file
-y = pd.read_csv('Lab3/Transmitance/transmit_test.mp4roi.csv', sep=' ')
+y = pd.read_csv('Lab3/Transmitance/transmit_1.mp4roi.csv', sep=' ')
 
 # Plot the data
 # Plot the data
