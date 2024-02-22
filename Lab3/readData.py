@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # Read the data from the file
-y = pd.read_csv('Lab3/Transmitance/transmit_1.mp4roi.csv', sep=' ')
+y = pd.read_csv('Lab3/Trappa/trappa_5.mp4roi.csv', sep=' ')
 
 # Plot the data
 # Plot the data
@@ -28,8 +28,8 @@ red = red-np.mean(red)
 green = green-np.mean(green)
 blue = blue-np.mean(blue)
 plt.plot(time,red, label='red', color='red')
-plt.plot(time,green, label='green', color='green')
-plt.plot(time,blue, label='blue', color='blue')
+# plt.plot(time,green, label='green', color='green')
+# plt.plot(time,blue, label='blue', color='blue')
 plt.xlabel('x')
 plt.ylabel('y')
 plt.title('Data from tommel2')
@@ -40,9 +40,15 @@ plt.show()
 window = np.hamming(len(green))
 green_windowed = green*window
 
+window = np.hamming(len(red))
+red_windowed = red*window
+
+window = np.hamming(len(blue))
+blue_windowed = blue*window
+
 samp_period = 10/len(green)
 
-Y = np.fft.fft(green_windowed,512)
+Y = np.fft.fft(red_windowed,512)
 freq = np.fft.fftfreq(512, samp_period)
 
 # Scale frequency axis by 60 to give BPM
