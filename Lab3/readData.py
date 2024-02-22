@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # Read the data from the file
-y = pd.read_csv('Lab3/tommel2', sep=' ')
+y = pd.read_csv('Lab3/Transmitance/transmit_test.mp4roi.csv', sep=' ')
 
 # Plot the data
 # Plot the data
@@ -27,9 +27,9 @@ time = np.linspace(0,videolength,len(green))
 red = red-np.mean(red)
 green = green-np.mean(green)
 blue = blue-np.mean(blue)
-# plt.plot(time,red, label='red', color='red')
+plt.plot(time,red, label='red', color='red')
 plt.plot(time,green, label='green', color='green')
-# plt.plot(time,blue, label='blue', color='blue')
+plt.plot(time,blue, label='blue', color='blue')
 plt.xlabel('x')
 plt.ylabel('y')
 plt.title('Data from tommel2')
