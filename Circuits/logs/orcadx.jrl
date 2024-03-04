@@ -1,0 +1,37 @@
+\t (00:00:01) orcadx 23.1 S001 Windows SPB 64-bit Edition
+\t (00:00:01)     Journal start - Mon Mar  4 10:45:52 2024
+\t (00:00:01)         Host=BENJAMIN-LENOVO User=benja Pid=35444 CPUs=20
+\t (00:00:01) CmdLine= C:\Cadence\OrCADX_23.1\tools\bin\unison.exe -layout -orcadx -mpssession benja -proj c:\cadence\projects\pspicetest.opj c:\cadence\projects\allegro\pspicetest.brd
+\t (00:00:01) 
+   (00:00:10) Loading axlcore.cxt 
+   (00:00:10) Searching for nsWare programs v2.62
+   (00:00:10) 	NsWare directory found: C:/Cadence/company/pcb/skill/nsWare/
+   (00:00:10) 	NsWare programs must reside in this directory!
+   (00:00:10) function _saveSelSet redefined
+   (00:00:10) function _restoreSelSet redefined
+   (00:00:10) function Find_Component_Routine redefined
+   (00:00:10) function AFn_formEnd redefined
+   (00:00:10) function AFn_formMessage redefined
+   (00:00:10) function AFn_formGroup redefined
+   (00:00:10) function AFn_formText redefined
+   (00:00:10) function AFn_formButton redefined
+   (00:00:10) function AFn_formChecklistItem redefined
+   (00:00:10) function AFn_formRealFillin redefined
+   (00:00:10) function AFn_formPop redefined
+   (00:00:10) function AFn_formThumbnail redefined
+   (00:00:10) function AFn_formOptionsString redefined
+   (00:00:10) function AFn_formSizeString redefined
+   (00:00:10) function AFn_formOptionalString redefined
+   (00:00:10) function _saveSelSet redefined
+   (00:00:10) function _restoreSelSet redefined
+   (00:00:10) function findAllOfType redefined
+   (00:00:10) function ashFindAllClines redefined
+   (00:00:10) function ashFindAllClinesegs redefined
+\t (00:00:10) Starting new design...
+   (00:00:13) Loading skillExt.cxt 
+\i (00:00:13) trapsize 26670
+\i (00:00:13) opencd c:/cadence/projects/allegro/pspicetest.brd 
+\t (00:00:13) Opening existing design...
+\i (00:00:13) trapsize 105000
+\t (00:00:14) > Sending response DoneOpenBoard
+\t (00:00:14)     Journal end - Mon Mar  4 10:46:04 2024
