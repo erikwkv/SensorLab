@@ -4,7 +4,7 @@ import numpy as np
 from scipy.signal import find_peaks
 
 # Read the data from the file
-y = pd.read_csv('Lab3\Genser\genser_1.mp4roi.csv', sep=' ')
+y = pd.read_csv('Lab3/Reflectance/reflect_5.mp4roi.csv', sep=' ')
 
 # Plot the data
 # Plot the data
