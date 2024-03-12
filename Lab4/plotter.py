@@ -9,14 +9,14 @@ from scipy.signal import freqs
 
 
 
-def readCSV(path):
+def readCSV(path, skip=0):
   data = []
   header = []  # removes first line of file
   filename = path
   with open(filename) as csvfile:
     csvreader = csv.reader(csvfile)
-    # Skip the first 20 lines
-    csvreader = islice(csvreader, 20, None)
+    # Skip the first lines
+    csvreader = islice(csvreader, skip, None)
     # set header to first remaining line
     header = next(csvreader)
     for datapoint in csvreader:
@@ -54,41 +54,44 @@ def magnitudeBode(dataList, dataLabel,col, col2=-1, line=True,legend_cols=3):
 
   print(col2)
   #plot data
-  for i in range (0,len(dataList)):
-    time = [p[0] for p in dataList[i]]
+  for file in range (0,len(dataList)):
+    time = [p[0] for p in dataList[file]]
     colors = list(mcolors.TABLEAU_COLORS) + list(mcolors.BASE_COLORS) + list(mcolors.CSS4_COLORS)
     
     if col2==1:
-      trace1 = [p[col2] for p in dataList[i]]
-      plt.plot(time, trace1, "--", alpha=0.8, label = dataLabel[i]+" (input)", color=colors[i])
-      trace2 = [p[col] for p in dataList[i]]
-      plt.plot(time, trace2, "-", alpha=0.8,label = dataLabel[i] +" (output)", color=colors[i])
+      trace1 = [p[col2] for p in dataList[file]]
+      plt.plot(time, trace1, "--", alpha=0.8, label = dataLabel[file]+" (input)", color=colors[file])
+      trace2 = [p[col] for p in dataList[file]]
+      plt.plot(time, trace2, "-", alpha=0.8,label = dataLabel[file] +" (output)", color=colors[file])
+
     elif col2==2: #relative plot of channel 2-1
-      trace = [p[2]-p[1] for p in dataList[i]]
-      plt.plot(time, trace, "-", alpha=0.8,label = dataLabel[i], color=colors[i])
+      trace = [p[2]-p[1] for p in dataList[file]]
+      plt.plot(time, trace, "-", alpha=0.8,label = dataLabel[file], color=colors[file])
     
     elif col2==3: #relative plot of channel 2-1 and ch1 and ch2
-      trace1 = [p[1] for p in dataList[i]]
-      plt.plot(time, trace1, "-", alpha=0.8, label = dataLabel[i]+" (input)", color=colors[i*3])
-      trace2 = [p[2] for p in dataList[i]]
-      plt.plot(time, trace2, "-", alpha=0.8, label = dataLabel[i] +" (output)", color=colors[i*3+1])
+      trace1 = [p[1] for p in dataList[file]]
+      plt.plot(time, trace1, "-", alpha=0.8, label = dataLabel[file]+" (input)", color=colors[file*3])
+      trace2 = [p[2] for p in dataList[file]]
+      plt.plot(time, trace2, "-", alpha=0.8, label = dataLabel[file] +" (output)", color=colors[file*3+1])
 
-      trace3 = [p[2]-p[1] for p in dataList[i]]
-      plt.plot(time, trace3, "-", alpha=0.8, label = dataLabel[i] +" (normalisert)", color=colors[i*3+2])
+      trace3 = [p[2]-p[1] for p in dataList[file]]
+      plt.plot(time, trace3, "-", alpha=0.8, label = dataLabel[file] +" (normalisert)", color=colors[file*3+2])
+
     elif col2==4: #both plot with input and output, but all data offset 10 dB
-      # trace1 = [p[1]+i*10 for p in dataList[i]]
-      # plt.plot(time, trace1, "--", alpha=0.8, label = dataLabel[i]+" (input)", color=colors[i])
-      trace2 = [p[2]+i*10 for p in dataList[i]]
-      # plt.plot(time, trace2, "-", alpha=0.8,label = dataLabel[i] +" (output)", color=colors[i])
-      plt.plot(time, trace2, "-", alpha=0.8,label = dataLabel[i], color=colors[i])
-    elif col2==5: #relative plot of channel 2-1 and ch1 and ch2
-      trace1 = [p[1] for p in dataList[i]]
-      plt.plot(time, trace1, "-", alpha=0.8, label = dataLabel[i]+" (input)", color=colors[i*4])
-      trace2 = [p[2] for p in dataList[i]]
-      plt.plot(time, trace2, "-", alpha=0.8, label = dataLabel[i] +" (output)", color=colors[i*4+1])
+      # trace1 = [p[1]+file*10 for p in dataList[file]]
+      # plt.plot(time, trace1, "--", alpha=0.8, label = dataLabel[file]+" (input)", color=colors[file])
+      trace2 = [p[2]+file*10 for p in dataList[file]]
+      # plt.plot(time, trace2, "-", alpha=0.8,label = dataLabel[file] +" (output)", color=colors[file])
+      plt.plot(time, trace2, "-", alpha=0.8,label = dataLabel[file], color=colors[file])
 
-      trace3 = [p[2]-p[1] for p in dataList[i]]
-      plt.plot(time, trace3, "-", alpha=0.8, label = dataLabel[i] +" (normalisert)", color=colors[i*4+2])
+    elif col2==5: #relative plot of channel 2-1 and ch1 and ch2 and simulation
+      trace1 = [p[1] for p in dataList[file]]
+      plt.plot(time, trace1, "-", alpha=0.8, label = dataLabel[file]+" (input)", color=colors[file*4])
+      trace2 = [p[2] for p in dataList[file]]
+      plt.plot(time, trace2, "-", alpha=0.8, label = dataLabel[file] +" (output)", color=colors[file*4+1])
+
+      trace3 = [p[2]-p[1] for p in dataList[file]]
+      plt.plot(time, trace3, "-", alpha=0.8, label = dataLabel[file] +" (normalisert)", color=colors[file*4+2])
 
       #simulated filter
       freqs = np.linspace(0.1,20_000_000,200_000_000)
@@ -106,12 +109,21 @@ def magnitudeBode(dataList, dataLabel,col, col2=-1, line=True,legend_cols=3):
       f_c = w_c/(2*np.pi)
       print(f_c)
 
-      plt.plot(freqs,20*np.log10(amp1), label = "Simulert filter", color=colors[i*4+3])
+      plt.plot(freqs,20*np.log10(amp1), label = "Simulert filter", color=colors[file*4+3])
 
+    elif col2==6: #relative plot of channel 2-1 and ch1 and ch2
+      
+      if file < 2:
+        trace1 = [p[2] - p[1] for p in dataList[file]]
+        plt.plot(time, trace1, "-", alpha=0.8, label = dataLabel[file]+" (input)", color=colors[file*3])
+      else:
+        trace1 = [p[3]*2 for p in dataList[file]]
+        plt.plot(time, trace1, "-", alpha=0.8, label = dataLabel[file]+" (input)", color=colors[file*3])
+        
 
     else:  
-      trace2 = [p[col] for p in dataList[i]]
-      plt.plot(time, trace2, "-", alpha=0.8,label = dataLabel[i], color=colors[i])
+      trace2 = [p[col] for p in dataList[file]]
+      plt.plot(time, trace2, "-", alpha=0.8,label = dataLabel[file], color=colors[file])
     
 
   #labels  
@@ -260,8 +272,10 @@ def bodeDiagram(fileList,dataLabel,mode, line=True, legend_cols=3):
   if len(fileList)>len(dataLabel):
     print("\n\nMissing labels for grafs\n\n")
   dataList= []
-  for i in range (0,len(fileList)):
-    dataList.append(readCSV(fileList[i]))
+  for i in range (0,len(fileList)-1):
+    dataList.append(readCSV(fileList[i], 25))
+
+  dataList.append(readCSV(fileList[len(fileList)-1], 0))
   magnitudeBode(dataList, dataLabel,2,mode, line, legend_cols)
   #phase(dataList, dataLabel,3)
 
@@ -472,48 +486,16 @@ def theoretical_bode_plot(R,C,L):
   plt.show()
   fig.savefig('bode_theoretical.png')
 
-theoretical_bode_plot(15,470.1e-6,403e-3)
+# theoretical_bode_plot(15,470.1e-6,403e-3)
 
-#bodefiles = ["bode/3V3filter_bode_v1.csv", "bode/3V3filter_bode_v2_11ohm_series.csv","bode/3V3filter_bode_v2_17ohm_series.csv","bode\3V3filter_bode_v2_33ohm_series.csv","bode/3V3filter_bode_v2_100ohm_series.csv","bode/3V3filter_bode_v2.csv"]
-#bodefiles = ["bode/3V3filter_bode_v1.csv","bode/3V3filter_bode_v2_11ohm_series.csv","bode/3V3filter_bode_v2_17ohm_series.csv","bode/3V3filter_bode_v2_100ohm_series.csv","bode/3V3filter_bode_v2.csv"]
-
-# #amplitudetest
-# bodefiles = ["bode/3V3filter_bode_v4_uten_last.csv","bode/3V3filter_bode_v4_1V_amplitude_uten_last.csv"]
-# dataLabel = ["0.2V amplitude","1V amplitude"]
-# bodeDiagram(bodefiles, dataLabel,1)
 
 bodefiles = ["bode/filter3V3_bode_v3_11ohm_series.csv","bode/filter3V3_bode_v4_11ohm_series.csv"]
 dataLabel = ["filter3V3_v3_11ohm_series","filter3V3_v4_11ohm_series"]
-# #seriemotstand test
-# bodefiles = ["bode/3V3filter_bode_v4_10.6ohm_uten_last.csv","bode/3V3filter_bode_v4_uten_last.csv"]
-# dataLabel = ["Med seriemotstand","uten seriemotstand"]
-# bodeDiagram(bodefiles, dataLabel,1)
 
-# #shifted view
-# bodefiles = ["bode/3V3filter_bode_v4_10.6ohm_uten_last.csv"]
-# dataLabel = ["Med seriemotstand"]
-# bodeDiagram(bodefiles, dataLabel,3)
 
-# # average test
-# bodefiles = ["bode/amplitude-med-wedge/3V3filter_bode_v4_10mV_mean1.csv","bode/amplitude-med-wedge/3V3filter_bode_v4_10mV_mean10.csv","bode/amplitude-med-wedge/3V3filter_bode_v4_10mV_mean20.csv","bode/amplitude-med-wedge/3V3filter_bode_v4_10mV_mean50.csv","bode/amplitude-med-wedge/3V3filter_bode_v4_10mV_mean100.csv"]
-# dataLabel = ["1 måling","10 målinger","20 målinger","50 målinger","100 målinger"]
-# bodeDiagram(bodefiles, dataLabel,4, False,5)
-
-# # amplitude test -> discover wedge issue
-# bodefiles = ["bode/amplitude-med-wedge/3V3filter_bode_v4_10mV_mean10.csv","bode/amplitude-med-wedge/3V3filter_bode_v4_20mV_mean10.csv","bode/amplitude-med-wedge/3V3filter_bode_v4_50mV_mean10.csv","bode/amplitude-med-wedge/3V3filter_bode_v4_100mV_mean10.csv","bode/amplitude-med-wedge/3V3filter_bode_v4_200mV_mean10.csv","bode/amplitude-med-wedge/3V3filter_bode_v4_500mV_mean10.csv","bode/amplitude-med-wedge/3V3filter_bode_v4_1000mV_mean10.csv"]
-# dataLabel = ["10 mV","20 mV","50 mV","100 mV","200 mV","500 mV","1000 mV"]
-# bodeDiagram(bodefiles, dataLabel,1, False,5)
-# bodeDiagram(bodefiles, dataLabel,2, True,5)
-
-# # amplitude test without wedge
-# bodefiles = ["bode/amplitude-uten-wedge/3V3filter_bode_v4_10mV_mean10.csv","bode/amplitude-uten-wedge/3V3filter_bode_v4_20mV_mean10.csv","bode/amplitude-uten-wedge/3V3filter_bode_v4_50mV_mean10.csv","bode/amplitude-uten-wedge/3V3filter_bode_v4_100mV_mean10.csv","bode/amplitude-uten-wedge/3V3filter_bode_v4_200mV_mean10.csv","bode/amplitude-uten-wedge/3V3filter_bode_v4_500mV_mean10.csv","bode/amplitude-uten-wedge/3V3filter_bode_v4_1000mV_mean10.csv"]
-# dataLabel = ["10 mV","20 mV","50 mV","100 mV","200 mV","500 mV","1000 mV"]
-# bodeDiagram(bodefiles, dataLabel,1, False,5)
-# bodeDiagram(bodefiles, dataLabel,2, True,5)
-
-bodefiles = ["bode/amplitude-uten-wedge/3V3filter_bode_MAIN_v4_100mV_mean10.csv"]
-label = ["LPF"]
-bodeDiagram(bodefiles, label,5, True,4)
+bodefiles = ["Lab4\BP-A-MCP6002-samples201.csv","Lab4\BP-B-MCP6002-samples201.csv","Lab4\Simulert-bodeplot.csv"]
+label = ["A","B","Simulert"]
+bodeDiagram(bodefiles, label,6, True,4)
 
 # # scope test of filter 
 # dataLabel = ["input","output"]
