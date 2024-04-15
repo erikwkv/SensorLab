@@ -115,10 +115,10 @@ def magnitudeBode(dataList, dataLabel,col, col2=-1, line=True,legend_cols=3):
       
       if file < 2:
         trace1 = [p[2] - p[1] for p in dataList[file]]
-        plt.plot(time, trace1, "-", alpha=0.8, label = dataLabel[file]+" (input)", color=colors[file*3])
+        plt.plot(time, trace1, "-", alpha=0.8, label = dataLabel[file]+"", color=colors[file*3])
       else:
         trace1 = [p[3]*2 for p in dataList[file]]
-        plt.plot(time, trace1, "-", alpha=0.8, label = dataLabel[file]+" (input)", color=colors[file*3])
+        plt.plot(time, trace1, "-", alpha=0.8, label = dataLabel[file]+"", color=colors[file*3])
         
 
     else:  
