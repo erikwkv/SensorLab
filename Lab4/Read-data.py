@@ -19,8 +19,8 @@ def get_IFI_IFQ_fft(filename):
     radar_IF_I = radar_IF_I*window
     x = x*window
     #fft
-    X = np.fft.fft(x)
-    freqz = np.fft.fftfreq(len(x),sample_period)
+    X = np.fft.fft(x,2**23)
+    freqz = np.fft.fftfreq(2**23,sample_period)
 
     return X, freqz, x, radar_IF_I, radar_IF_Q, sample_period
 
@@ -34,7 +34,6 @@ def plot_time_domain(x, radar_IF_I, radar_IF_Q,sample_period):
     plt.legend()
     plt.show()
 
-
 def plot_freq_domain(X,freqz):
     plt.plot(freqz,20*np.log10(np.abs(X)))
     plt.xlabel('Frequency (Hz)')
@@ -42,7 +41,6 @@ def plot_freq_domain(X,freqz):
     plt.xlim(-5000,5000)
     plt.grid()
     plt.show()
-
 
 def find_freq(X,freqz):
     peak_index = np.argmax(np.abs(X))
@@ -53,7 +51,6 @@ def velocity(f_d):
     f_0 = 24.13*10**9
     c = 3*10**8
     return ((c*f_d) / (2*f_0))
-
 
 def hele(filename):
     X, freqz, x, radar_IF_I, radar_IF_Q, sample_period = get_IFI_IFQ_fft(filename)
